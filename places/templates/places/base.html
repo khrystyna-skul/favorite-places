@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мої Улюблені Місця{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'places/css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="{% url 'index' %}" class="nav-link">Головна</a>
+            <a href="{% url 'place_list' %}" class="nav-link">Список місць</a>
+            <a href="{% url 'add_place' %}" class="nav-link">Додати місце</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Created by Khrystyna Skulysh</p>
+    </footer>
+</body>
+</html>
