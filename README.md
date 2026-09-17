@@ -29,7 +29,7 @@
 ### 1. Клонування репозиторію
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/favorite-places.git](https://github.com/YOUR_USERNAME/favorite-places.git)
+git clone https://github.com/khrystyna-skul/favorite-places/
 cd favorite-places
 
 ```
