@@ -1,0 +1,50 @@
+{% extends 'places/base.html' %}
+
+{% block title %}Редагувати {{ place.name }}{% endblock %}
+
+{% block content %}
+<h2>Редагувати місце: {{ place.name }}</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+        <label for="name">Назва місця*:</label><br>
+        <input type="text" id="name" name="name" value="{{ place.name }}">
+        {% if errors.name %}<span style="color:red;">{{ errors.name }}</span>{% endif %}
+    </div>
+
+    <div>
+        <label for="type">Тип:</label><br>
+        <input type="text" id="type" name="type" value="{{ place.type }}">
+    </div>
+
+    <div>
+        <label for="location">Локація:</label><br>
+        <input type="text" id="location" name="location" value="{{ place.location }}">
+    </div>
+
+    <div>
+        <label for="rating">Рейтинг (1-5)*:</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5" value="{{ place.rating }}">
+        {% if errors.rating %}<span style="color:red;">{{ errors.rating }}</span>{% endif %}
+    </div>
+
+    <div>
+        <label for="image">Зображення (залиште порожнім, щоб зберегти поточне):</label><br>
+        {% if place.image %}
+            <p>Поточне фото: <img src="{{ place.image.url }}" width="100"></p>
+        {% endif %}
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+
+    <div>
+        <label for="description">Опис:</label><br>
+        <textarea id="description" name="description" rows="4">{{ place.description }}</textarea>
+    </div>
+
+    <br>
+    <button type="submit">Зберегти зміни</button>
+    <a href="{% url 'place_detail' place.id %}">Скасувати</a>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'places/base.html' %}
+
+{% block title %}Головна - Мої Улюблені Місця{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Ласкаво просимо до каталогу улюблених місць!</h1>
+    <p>Тут ви можете зберігати свої улюблені локації для відпочинку або скористатися підказкою, куди вирушити сьогодні.</p>
+    
+    <form method="get" action="{% url 'index' %}">
+        <button type="submit" name="random" value="1" class="btn">Куди піти сьогодні?</button>
+    </form>
+</section>
+
+{% if random_place %}
+<section class="random-result">
+    <h2>Сьогодні пропонуємо відвідати:</h2>
+    {% include 'places/place_card.html' with place=random_place %}
+</section>
+{% endif %}
+{% endblock %}

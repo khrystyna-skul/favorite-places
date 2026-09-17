@@ -1,0 +1,35 @@
+{% extends 'places/base.html' %}
+{% load static %}
+
+{% block title %}{{ place.name }}{% endblock %}
+
+{% block content %}
+<article class="place-detail">
+    <h2>{{ place.name }}</h2>
+
+    {% if place.image %}
+        <img src="{{ place.image.url }}" alt="{{ place.name }}" class="detail-img">
+    {% else %}
+        <img src="{% static 'places/images/default.jpg' %}" alt="Фото місця" class="detail-img">
+    {% endif %}
+
+    <p><strong>Тип:</strong> {{ place.type }}</p>
+    <p><strong>Локація:</strong>
+        {% if place.location %}
+            {{ place.location }}
+        {% else %}
+            Secret place👀
+        {% endif %}
+    </p>
+    <p><strong>Особистий рейтинг:</strong> {{ place.stars }} ({{ place.rating }}/5)</p>
+    <p><strong>Дата відгуку:</strong> {{ place.created_at }}</p>
+    <hr>
+    <h3>Повний опис:</h3>
+    <p>{{ place.description }}</p>
+
+    <div class="actions" style="margin-top: 20px;">
+        <a href="{% url 'edit_place' place.id %}" class="btn-edit" style="margin-right: 15px;">✏️ Редагувати</a>
+        <a href="{% url 'place_list' %}" class="btn-back">← Повернутися до списку</a>
+    </div>
+</article>
+{% endblock %}
